@@ -6,9 +6,12 @@ import 'screens/home_screen.dart';
 import 'screens/my_content_screen.dart';
 import 'screens/progress_screen.dart';
 import 'screens/settings_screen.dart';
+import 'services/asr_service.dart';
+import 'services/content_sync_service.dart';
 import 'services/player_service.dart';
 import 'services/recorder_service.dart';
 import 'state/app_state.dart';
+import 'theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,18 +33,42 @@ class ShadowTalkApp extends StatelessWidget {
         Provider(create: (_) => LessonRepository()),
         Provider(create: (_) => PlayerService()),
         Provider(create: (_) => RecorderService()),
+        Provider(create: (_) => AsrService()),
+        Provider(create: (c) => ContentSyncService(c.read<LessonRepository>())),
       ],
       child: MaterialApp(
         title: 'Shadow Talk',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: const Color(0xFF0D1117),
-          colorScheme: const ColorScheme.dark(
-            primary: Color(0xFFFFB703),
-            secondary: Color(0xFF4493F8),
-            surface: Color(0xFF161B22),
+          brightness: Brightness.light,
+          scaffoldBackgroundColor: kBg,
+          colorScheme: const ColorScheme.light(
+            primary: kBlue,
+            secondary: kBlue,
+            surface: kCard,
+            error: kRed,
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: kCard,
+            surfaceTintColor: kCard,
+            foregroundColor: kText,
+            elevation: 0.5,
+          ),
+          cardTheme: CardThemeData(
+            color: kCard,
+            elevation: 0,
+            margin: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+              side: const BorderSide(color: kLine),
+            ),
+          ),
+          filledButtonTheme: FilledButtonThemeData(
+            style: FilledButton.styleFrom(
+              backgroundColor: kBlue,
+              foregroundColor: Colors.white,
+            ),
           ),
         ),
         home: const RootScaffold(),

@@ -1,6 +1,8 @@
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 
+import '../models/models.dart';
+
 /// Phát audio nền — tắt màn hình vẫn chạy, hiện trên media notification,
 /// nút tai nghe Bluetooth điều khiển được (play/pause).
 class PlayerService {
@@ -14,10 +16,14 @@ class PlayerService {
         androidStopForegroundOnPause: true,
       );
 
-  Future<void> playAsset(String asset,
+  Future<void> playRef(AudioRef ref,
       {String title = 'Shadow Talk', String album = 'Bài học'}) async {
-    await player.setAudioSource(AudioSource.asset(asset,
-        tag: MediaItem(id: asset, album: album, title: title)));
+    final source = ref.isFile
+        ? AudioSource.file(ref.path,
+            tag: MediaItem(id: ref.path, album: album, title: title))
+        : AudioSource.asset(ref.path,
+            tag: MediaItem(id: ref.path, album: album, title: title));
+    await player.setAudioSource(source);
     await player.play();
   }
 

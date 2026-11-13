@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Màn "Nội dung của tôi" — phần thân đầy đủ làm ở bước 6
+import '../theme.dart';
+
+/// Màn "Nội dung của tôi" — phần thân đầy đủ làm ở bước s6
 /// (dán text → tự tách câu + TTS; nhập file audio + transcript).
 class MyContentScreen extends StatelessWidget {
   const MyContentScreen({super.key});
@@ -16,7 +18,7 @@ class MyContentScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Dán đoạn tiếng Anh muốn luyện:',
-                style: TextStyle(color: Colors.white54)),
+                style: TextStyle(color: kMuted)),
             const SizedBox(height: 10),
             Expanded(
               child: TextField(
@@ -36,14 +38,14 @@ class MyContentScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: FilledButton(
-                    onPressed: null, // bước 6 sẽ kích hoạt
+                    onPressed: null, // bước s6 sẽ kích hoạt
                     child: const Text('Tạo bài luyện (sắp có)'),
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: null, // bước 6 sẽ kích hoạt
+                    onPressed: null, // bước s6 sẽ kích hoạt
                     child: const Text('Nhập file audio'),
                   ),
                 ),
@@ -51,8 +53,8 @@ class MyContentScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             const Text(
-              'Bước 6 sẽ tự tách câu, đọc bằng giọng máy và lưu thành bài luyện.',
-              style: TextStyle(fontSize: 12, color: Colors.white38),
+              'Bước s6 sẽ tự tách câu, đọc bằng giọng máy và lưu thành bài luyện.',
+              style: TextStyle(fontSize: 12, color: kMuted),
             ),
           ],
         ),
