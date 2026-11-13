@@ -4,18 +4,20 @@ import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:record/record.dart';
 
 import '../dsp/filters.dart';
 
-/// Ghi âm qua Foreground Service (tắt màn vẫn chạy) + WebRTC
-/// NoiseSuppressor/EchoCanceler + lọc thông cao 85 Hz trong Dart.
-/// Ghi dạng stream PCM 16 kHz để sau này nhét thẳng vào chấm điểm offline.
+/// Ghi âm qua AudioRecord native (MethodChannel/EventChannel tự viết — không
+/// dùng package `record` vì mâu thuẫn version trên pub). Foreground Service
+/// kiểu microphone cho phép ghi khi tắt màn hình; NS/EchoCanceler/AGC bật ở
+/// native; lọc thông cao 85 Hz + VAD chạy trong Dart.
+/// PCM 16 kHz mono 16-bit — dùng trực tiếp cho chấm điểm offline (bước 4).
 class RecorderService {
-  final AudioRecorder _rec = AudioRecorder();
-  static const MethodChannel _sco = MethodChannel('shadow_talk/audio');
+  static const MethodChannel _ch = MethodChannel('shadow_talk/recorder');
+  static const MethodChannel _audio = MethodChannel('shadow_talk/audio');
+  static const EventChannel _stream = EventChannel('shadow_talk/recorder_stream');
 
-  StreamSubscription<Uint8List>? _sub;
+  StreamSubscription? _sub;
   final List<int> _pcm = [];
   late BiquadHighPass _hpf;
   late Vad _vad;
@@ -24,18 +26,24 @@ class RecorderService {
   void Function(double rms, bool speech)? onLevel;
   void Function(List<int> pcm)? onDone;
 
-  Future<bool> hasPermission() => _rec.hasPermission();
+  Future<bool> hasPermission() async {
+    try {
+      return await _audio.invokeMethod('hasPermission') == true;
+    } catch (_) {
+      return false;
+    }
+  }
 
   /// Chuyển đường mic sang tai nghe Bluetooth (SCO) nếu có cắm.
   Future<void> startSco() async {
     try {
-      await _sco.invokeMethod('startBluetoothSco');
+      await _audio.invokeMethod('startBluetoothSco');
     } catch (_) {}
   }
 
   Future<void> stopSco() async {
     try {
-      await _sco.invokeMethod('stopBluetoothSco');
+      await _audio.invokeMethod('stopBluetoothSco');
     } catch (_) {}
   }
 
@@ -45,15 +53,13 @@ class RecorderService {
     _hpf = BiquadHighPass(85, 16000);
     _vad = Vad();
     _recording = true;
-    final stream = await _rec.startStream(const RecordConfig(
-      encoder: AudioEncoder.pcm16bits,
-      sampleRate: 16000,
-      numChannels: 1,
-      autoGain: true,
-      echoCancel: true,
-      noiseSuppress: true,
-    ));
-    _sub = stream.listen(_onChunk);
+    _sub = _stream.receiveBroadcastStream().listen(
+      (chunk) {
+        if (chunk is Uint8List) _onChunk(chunk);
+      },
+      onError: (_) {},
+    );
+    await _ch.invokeMethod('start');
   }
 
   void _onChunk(Uint8List chunk) {
@@ -76,7 +82,7 @@ class RecorderService {
     await _sub?.cancel();
     _sub = null;
     try {
-      await _rec.stop();
+      await _ch.invokeMethod('stop');
     } catch (_) {}
     await stopSco();
     final data = List<int>.from(_pcm);
@@ -93,9 +99,6 @@ class RecorderService {
   bool get isRecording => _recording;
 
   Future<void> dispose() async {
-    await _sub?.cancel();
-    try {
-      await _rec.dispose();
-    } catch (_) {}
+    await finish();
   }
 }
