@@ -27,6 +27,9 @@ jobs:
         working-directory: app
         run: flutter create --platforms android --org vn.phong --project-name shadow_talk .
 
+      - name: Patch Android config (minSdk 24)
+        run: python3 tools/patch-android.py
+
       - name: Sync lesson assets into app
         run: python3 tools/sync-assets.py
 
