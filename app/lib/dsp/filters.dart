@@ -14,7 +14,7 @@ class BiquadHighPass {
     final a0 = 1 + alpha;
     final bb = (1 + c) / 2;
     return BiquadHighPass._(
-        bb / a0, -bb / a0, bb / a0, -2 * c / a0, (1 - alpha) / a0);
+        bb / a0, -2 * bb / a0, bb / a0, -2 * c / a0, (1 - alpha) / a0);
   }
 
   BiquadHighPass._(this.b0, this.b1, this.b2, this.a1, this.a2);
