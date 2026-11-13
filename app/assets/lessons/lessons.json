@@ -1,0 +1,155 @@
+{
+  "voice": "en-US-AndrewNeural",
+  "rate": "-4%",
+  "topics": {
+    "daily": "Giao tiếp hằng ngày",
+    "work": "Công việc / bán hàng",
+    "travel": "Du lịch"
+  },
+  "lessons": [
+    {
+      "id": "daily-a2-chao-hoi",
+      "topic": "daily",
+      "level": "A2",
+      "title_vi": "Chào hỏi và làm quen",
+      "sentences": [
+        {"en": "Hi, how are you today?", "vi": "Chào bạn, hôm nay bạn thế nào?"},
+        {"en": "I'm fine, thanks. And you?", "vi": "Mình ổn, cảm ơn. Còn bạn?"},
+        {"en": "What's your name?", "vi": "Bạn tên gì?"},
+        {"en": "My name is Phong. Nice to meet you.", "vi": "Mình tên Phong. Rất vui được gặp bạn."},
+        {"en": "Where are you from?", "vi": "Bạn đến từ đâu?"},
+        {"en": "I'm from Vietnam.", "vi": "Mình đến từ Việt Nam."},
+        {"en": "It's a beautiful day, isn't it?", "vi": "Hôm nay trời đẹp nhỉ?"},
+        {"en": "See you tomorrow. Take care!", "vi": "Hẹn gặp bạn ngày mai. Giữ sức nhé!"}
+      ]
+    },
+    {
+      "id": "daily-b1-mua-sam",
+      "topic": "daily",
+      "level": "B1",
+      "title_vi": "Mua sắm và hỏi giá",
+      "sentences": [
+        {"en": "Excuse me, how much is this bag?", "vi": "Cho hỏi, cái túi này giá bao nhiêu?"},
+        {"en": "It's on sale this week, only twenty dollars.", "vi": "Tuần này nó đang giảm giá, chỉ hai mươi đô la."},
+        {"en": "That's a bit expensive for me.", "vi": "Hơi đắt với mình."},
+        {"en": "If you buy two, I can give you a discount.", "vi": "Nếu bạn mua hai cái, tôi có thể giảm giá cho."},
+        {"en": "Do you have this in a different color?", "vi": "Cái này có màu khác không?"},
+        {"en": "Let me try it on first.", "vi": "Để mình thử trước nhé."},
+        {"en": "Can I pay by card?", "vi": "Mình trả bằng thẻ được không?"},
+        {"en": "Sure, the cashier is right over there.", "vi": "Được chứ, quầy thu ngân ở ngay đằng kia."}
+      ]
+    },
+    {
+      "id": "daily-b2-cuoi-tuan",
+      "topic": "daily",
+      "level": "B2",
+      "title_vi": "Nói chuyện cuối tuần với bạn bè",
+      "sentences": [
+        {"en": "Hey, long time no see! How have you been?", "vi": "Ê, lâu không gặp! Dạo này thế nào?"},
+        {"en": "Pretty good. I've been busy with work lately.", "vi": "Khá ổn. Dạo này mình bận việc công ty."},
+        {"en": "Are you doing anything special this weekend?", "vi": "Cuối tuần bạn có làm gì đặc biệt không?"},
+        {"en": "I'm thinking about taking the kids to the beach.", "vi": "Mình định đưa các con ra biển."},
+        {"en": "That sounds like a great idea.", "vi": "Nghe là ý hay đấy."},
+        {"en": "We should grab a coffee sometime this week.", "vi": "Tuần này mình nên rủ nhau uống cà phê."},
+        {"en": "Sounds good. Let's say Thursday evening?", "vi": "Được. Thứ Năm tối nhé?"},
+        {"en": "Perfect. I'll text you the details.", "vi": "Tuyệt. Mình nhắn tin chi tiết cho bạn sau."}
+      ]
+    },
+    {
+      "id": "work-a2-chao-khach",
+      "topic": "work",
+      "level": "A2",
+      "title_vi": "Chào khách hàng và giới thiệu sản phẩm",
+      "sentences": [
+        {"en": "Good morning! Welcome to our store.", "vi": "Chào buổi sáng! Chào mừng đến cửa hàng chúng tôi."},
+        {"en": "Hello, I'm looking for a gift for my friend.", "vi": "Chào, tôi đang tìm một món quà cho bạn tôi."},
+        {"en": "What kind of gift does your friend like?", "vi": "Bạn của bạn thích loại quà gì?"},
+        {"en": "She likes coffee and tea.", "vi": "Cô ấy thích cà phê và trà."},
+        {"en": "How about this coffee set? It's very popular.", "vi": "Bộ cà phê này thế nào? Nó bán chạy lắm."},
+        {"en": "It looks nice. How much is it?", "vi": "Trông đẹp đấy. Giá bao nhiêu?"},
+        {"en": "It's fifteen dollars.", "vi": "Giá mười lăm đô la."},
+        {"en": "Great, I'll take it.", "vi": "Tuyệt, tôi lấy bộ này."}
+      ]
+    },
+    {
+      "id": "work-b1-gia-hang",
+      "topic": "work",
+      "level": "B1",
+      "title_vi": "Trao đổi giá cả và giao hàng",
+      "sentences": [
+        {"en": "Thanks for coming in today, Mr. Smith.", "vi": "Cảm ơn anh Smith đã đến hôm nay."},
+        {"en": "I'd like to discuss the price of your products.", "vi": "Tôi muốn trao đổi về giá sản phẩm của bên anh."},
+        {"en": "If you order fifty boxes, we can offer ten percent off.", "vi": "Nếu anh đặt năm mươi thùng, chúng tôi giảm mười phần trăm."},
+        {"en": "That sounds reasonable. What about delivery time?", "vi": "Nghe hợp lý đấy. Còn thời gian giao hàng thì sao?"},
+        {"en": "We deliver within five working days.", "vi": "Chúng tôi giao trong vòng năm ngày làm việc."},
+        {"en": "Do you offer free shipping for large orders?", "vi": "Đơn lớn có miễn phí vận chuyển không?"},
+        {"en": "Yes, orders over five hundred dollars ship free.", "vi": "Có, đơn trên năm trăm đô thì miễn phí."},
+        {"en": "Perfect. Let's sign the contract tomorrow.", "vi": "Tuyệt vời. Ngày mai mình ký hợp đồng nhé."}
+      ]
+    },
+    {
+      "id": "work-b2-khieu-nai",
+      "topic": "work",
+      "level": "B2",
+      "title_vi": "Đơn hàng và giải quyết khiếu nại",
+      "sentences": [
+        {"en": "I'm calling about order number one zero five.", "vi": "Tôi gọi về đơn hàng số một trăm lẻ năm."},
+        {"en": "Could you tell me what the problem is?", "vi": "Anh cho biết vấn đề là gì được không?"},
+        {"en": "Half of the boxes arrived damaged.", "vi": "Một nửa số thùng hàng đến bị hư hỏng."},
+        {"en": "I'm really sorry about that.", "vi": "Tôi thật sự rất tiếc về việc đó."},
+        {"en": "We'll send replacements by express delivery this week.", "vi": "Tuần này chúng tôi sẽ gửi hàng thay thế bằng chuyển phát nhanh."},
+        {"en": "How will you make sure this doesn't happen again?", "vi": "Anh sẽ làm sao đảm bảo việc này không lặp lại?"},
+        {"en": "We're improving our packaging starting today.", "vi": "Chúng tôi đang cải thiện cách đóng gói kể từ hôm nay."},
+        {"en": "Thank you. I appreciate your quick response.", "vi": "Cảm ơn anh. Tôi đánh giá cao phản hồi nhanh của anh."}
+      ]
+    },
+    {
+      "id": "travel-a2-san-bay",
+      "topic": "travel",
+      "level": "A2",
+      "title_vi": "Ở sân bay",
+      "sentences": [
+        {"en": "Excuse me, where is the check-in counter?", "vi": "Cho hỏi, quầy làm thủ tục ở đâu?"},
+        {"en": "It's right over there, next to the information desk.", "vi": "Ở ngay đằng kia, cạnh bàn thông tin."},
+        {"en": "Here is my passport and ticket.", "vi": "Đây là hộ chiếu và vé của tôi."},
+        {"en": "Do you have any bags to check in?", "vi": "Anh có hành lý ký gửi không?"},
+        {"en": "Just one suitcase.", "vi": "Chỉ một cái vali thôi."},
+        {"en": "Would you like a window or an aisle seat?", "vi": "Anh muốn ngồi gần cửa sổ hay lối đi?"},
+        {"en": "A window seat, please.", "vi": "Gần cửa sổ nhé."},
+        {"en": "Your gate is number twelve. Boarding starts at nine.", "vi": "Cổng của anh là số mười hai. Lên máy bay bắt đầu lúc chín giờ."}
+      ]
+    },
+    {
+      "id": "travel-b1-khach-san",
+      "topic": "travel",
+      "level": "B1",
+      "title_vi": "Nhận phòng khách sạn",
+      "sentences": [
+        {"en": "Good evening. I have a reservation under the name Phong.", "vi": "Chào buổi tối. Tôi có đặt phòng dưới tên Phong."},
+        {"en": "Let me check. Yes, a double room for two nights.", "vi": "Để tôi kiểm tra. Vâng, phòng đôi cho hai đêm."},
+        {"en": "That's correct.", "vi": "Đúng rồi ạ."},
+        {"en": "Could I have your passport, please?", "vi": "Cho tôi xin hộ chiếu của anh nhé?"},
+        {"en": "Here you are. Is breakfast included?", "vi": "Đây ạ. Bữa sáng có gồm trong giá phòng không?"},
+        {"en": "Yes, breakfast is from six to ten in the morning.", "vi": "Có, bữa sáng từ sáu đến mười giờ sáng."},
+        {"en": "What time is check-out?", "vi": "Trả phòng lúc mấy giờ?"},
+        {"en": "Check-out is at twelve noon. Enjoy your stay!", "vi": "Trả phòng lúc mười hai giờ trưa. Chúc anh nghỉ vui vẻ!"}
+      ]
+    },
+    {
+      "id": "travel-b2-hoi-duong",
+      "topic": "travel",
+      "level": "B2",
+      "title_vi": "Hỏi đường và đi quanh thành phố",
+      "sentences": [
+        {"en": "Excuse me, could you tell me how to get to the train station?", "vi": "Cho hỏi, làm thế nào để đến nhà ga?"},
+        {"en": "Sure. Go straight for two blocks, then turn left.", "vi": "Được chứ. Đi thẳng hai đoạn, rồi rẽ trái."},
+        {"en": "Is it far from here?", "vi": "Chỗ đó xa đây không?"},
+        {"en": "It's about a ten-minute walk.", "vi": "Đi bộ khoảng mười phút thôi."},
+        {"en": "Can I take a bus instead?", "vi": "Đi xe buýt được không?"},
+        {"en": "Yes, bus number seven stops right in front of the station.", "vi": "Được, xe số bảy dừng ngay trước ga."},
+        {"en": "How often do the buses run?", "vi": "Xe chạy mỗi bao lâu một chuyến?"},
+        {"en": "Every ten minutes, but it's faster to walk.", "vi": "Mười phút một chuyến, nhưng đi bộ thì nhanh hơn."}
+      ]
+    }
+  ]
+}

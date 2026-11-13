@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow Talk — Mock UI</title>
+<style>
+  :root{
+    --bg:#0d1117; --card:#161b22; --card2:#1c2330; --line:#2d333b;
+    --text:#e6edf3; --muted:#8b949e; --amber:#ffb703; --green:#3fb950;
+    --red:#f85149; --yellow:#d29922; --blue:#4493f8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
+  body{background:#04060a;color:var(--text);display:flex;gap:40px;justify-content:center;padding:40px;flex-wrap:wrap}
+  .wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .cap{color:var(--muted);font-size:15px}
+  .phone{width:390px;height:844px;background:var(--bg);border:1px solid var(--line);border-radius:36px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .status{height:34px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font-size:12px;color:var(--muted)}
+
+  /* ===== Màn Luyện tập ===== */
+  .top{display:flex;align-items:center;gap:10px;padding:6px 18px 10px}
+  .top .back{font-size:22px;color:var(--muted)}
+  .top .t{flex:1}
+  .top .t b{font-size:16px}
+  .top .t span{display:block;font-size:12px;color:var(--muted)}
+  .prog{font-size:13px;color:var(--amber);font-weight:600}
+  .progbar{height:4px;background:var(--card);margin:0 18px;border-radius:2px}
+  .progbar i{display:block;height:100%;width:37%;background:var(--amber);border-radius:2px}
+  .sentence{margin:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+  .sentence .en{font-size:22px;line-height:1.45;font-weight:600}
+  .w{padding:1px 4px;border-radius:6px}
+  .w.ok{background:rgba(63,185,80,.16);color:#7ee787}
+  .w.miss{background:rgba(248,81,73,.18);color:#ff9d97;text-decoration:line-through}
+  .w.off{background:rgba(210,153,34,.18);color:#e3b341}
+  .sentence .vi{margin-top:10px;color:var(--muted);font-size:14px}
+  .state{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0 2px;font-size:15px;color:var(--blue)}
+  .mic{width:14px;height:14px;border-radius:50%;background:var(--blue);animation:pulse 1.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(68,147,248,.5)}70%{box-shadow:0 0 0 12px rgba(68,147,248,0)}100%{box-shadow:0 0 0 0 rgba(68,147,248,0)}}
+  .score{display:flex;flex-direction:column;align-items:center;margin:8px 0 2px}
+  .ring{position:relative;width:210px;height:210px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .n{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .n b{font-size:56px;color:var(--amber)}
+  .ring .n small{color:var(--muted);font-size:13px;margin-top:2px}
+  .verdict{font-size:17px;font-weight:600;color:var(--green)}
+  .legend{display:flex;gap:14px;justify-content:center;font-size:12px;color:var(--muted);margin:4px 0 8px}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+  .replay{display:flex;gap:12px;justify-content:center}
+  .replay button{background:var(--card2);border:1px solid var(--line);color:var(--text);border-radius:999px;padding:10px 20px;font-size:14px}
+  .ctrl{margin-top:auto;padding:14px 18px 26px;display:flex;flex-direction:column;gap:10px}
+  .bigrow{display:flex;gap:12px}
+  .big{flex:1;border:none;border-radius:22px;padding:22px 0;font-size:19px;font-weight:700}
+  .big.ghost{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+  .big.go{background:var(--green);color:#04140a}
+  .hint{font-size:12px;color:var(--muted);text-align:center}
+
+  /* ===== Màn Danh sách bài ===== */
+  .h-home{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 4px}
+  .h-home h1{font-size:26px}
+  .streak{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px}
+  .sub{color:var(--muted);font-size:13px;padding:0 20px 10px}
+  .filters{display:flex;gap:8px;padding:4px 20px 6px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:8px 14px;font-size:13px}
+  .chip.on{background:rgba(255,183,3,.14);border-color:var(--amber);color:var(--amber);font-weight:600}
+  .sep{color:var(--line);font-size:13px;padding:6px 20px 0}
+  .lessons{padding:8px 18px;display:flex;flex-direction:column;gap:12px;overflow:auto}
+  .lesson{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+  .lesson .r1{display:flex;align-items:center;gap:10px}
+  .lv{font-size:12px;font-weight:700;border-radius:8px;padding:4px 8px}
+  .lv.a2{background:rgba(63,185,80,.16);color:#7ee787}
+  .lv.b1{background:rgba(68,147,248,.16);color:#79c0ff}
+  .lv.b2{background:rgba(210,153,34,.16);color:#e3b341}
+  .lesson .r1 b{flex:1;font-size:16px}
+  .best{font-size:14px;color:var(--amber);font-weight:700}
+  .lesson .topic{color:var(--muted);font-size:12px;margin-top:4px}
+  .pbar{height:5px;background:var(--card2);border-radius:3px;margin-top:10px}
+  .pbar i{display:block;height:100%;background:var(--green);border-radius:3px}
+  .pmeta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:5px}
+  .tabbar{margin-top:auto;display:flex;border-top:1px solid var(--line);padding:10px 0 22px}
+  .tab{flex:1;text-align:center;font-size:12px;color:var(--muted)}
+  .tab.on{color:var(--amber)}
+  .tab span{display:block;font-size:20px;margin-bottom:3px}
+</style>
+</head>
+<body>
+
+<!-- ============ MÀN LUYỆN TẬP ============ -->
+<div class="wrap">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>▮▮▮  🔋 82%</span></div>
+    <div class="top">
+      <span class="back">‹</span>
+      <div class="t"><b>Mua sắm và hỏi giá</b><span>B1 · Giao tiếp hằng ngày · Chế độ đi xe</span></div>
+      <span class="prog">3/8</span>
+    </div>
+    <div class="progbar"><i></i></div>
+
+    <div class="sentence">
+      <div class="en"><span class="w ok">Excuse</span> <span class="w ok">me,</span> <span class="w ok">how</span> <span class="w ok">much</span> <span class="w ok">is</span> <span class="w miss">this</span> <span class="w off">bag?</span></div>
+      <div class="vi">Cho hỏi, cái túi này giá bao nhiêu?</div>
+    </div>
+
+    <div class="state"><span class="mic"></span> Đang nghe bạn nói…</div>
+
+    <div class="score">
+      <div class="ring">
+        <svg width="210" height="210">
+          <circle cx="105" cy="105" r="92" stroke="#21262d" stroke-width="14" fill="none"/>
+          <circle cx="105" cy="105" r="92" stroke="#ffb703" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="498" stroke-dashoffset="70"/>
+        </svg>
+        <div class="n"><b>86</b><small>câu trước · đạt ✓</small></div>
+      </div>
+      <div class="verdict">Tuyệt vời! 🎉</div>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:#3fb950"></i>Đúng</span>
+      <span><i style="background:#f85149"></i>Sai/thiếu</span>
+      <span><i style="background:#d29922"></i>Lệch nhẹ</span>
+    </div>
+
+    <div class="replay">
+      <button>▶ Giọng mẫu</button>
+      <button>🎤 Giọng của mình</button>
+    </div>
+
+    <div class="ctrl">
+      <div class="bigrow">
+        <button class="big ghost">🔁 Lặp lại</button>
+        <button class="big go">Tiếp ▶</button>
+      </div>
+      <div class="hint">Tai nghe: bấm ⏯ = lặp lại · giữ = sang câu · nói "tiếp" / "lặp lại"</div>
+    </div>
+  </div>
+  <div class="cap">Màn Luyện tập — tự động: phát → ghi → chấm → đọc điểm → sang câu</div>
+</div>
+
+<!-- ============ MÀN DANH SÁCH BÀI ============ -->
+<div class="wrap">
+  <div class="phone">
+    <div class="status"><span>9:41</span><span>▮▮▮  🔋 82%</span></div>
+    <div class="h-home">
+      <h1>Shadow Talk</h1>
+      <div class="streak">🔥 3 ngày</div>
+    </div>
+    <div class="sub">Luyện nói tiếng Anh kiểu shadowing — nghe câu, nói lại, chấm ngay.</div>
+
+    <div class="filters">
+      <span class="chip on">Tất cả</span><span class="chip">A2</span><span class="chip">B1</span><span class="chip">B2</span>
+    </div>
+    <div class="filters">
+      <span class="chip on">Hằng ngày</span><span class="chip">Công việc</span><span class="chip">Du lịch</span>
+    </div>
+
+    <div class="sep">GIAO TIẾP HẰNG NGÀY</div>
+    <div class="lessons">
+      <div class="lesson">
+        <div class="r1"><span class="lv a2">A2</span><b>Chào hỏi và làm quen</b><span class="best">★ 92</span></div>
+        <div class="topic">8 câu · luyện 2 lần</div>
+        <div class="pbar"><i style="width:100%"></i></div>
+        <div class="pmeta"><span>Hoàn thành</span><span>câu 8/8</span></div>
+      </div>
+      <div class="lesson">
+        <div class="r1"><span class="lv b1">B1</span><b>Mua sắm và hỏi giá</b><span class="best">★ 86</span></div>
+        <div class="topic">8 câu · đang luyện</div>
+        <div class="pbar"><i style="width:37%"></i></div>
+        <div class="pmeta"><span>Đang luyện</span><span>câu 3/8</span></div>
+      </div>
+      <div class="lesson">
+        <div class="r1"><span class="lv b2">B2</span><b>Nói chuyện cuối tuần với bạn bè</b><span class="best">—</span></div>
+        <div class="topic">8 câu · chưa luyện</div>
+        <div class="pbar"><i style="width:0%"></i></div>
+        <div class="pmeta"><span>Chưa luyện</span><span>câu 0/8</span></div>
+      </div>
+      <div class="lesson">
+        <div class="r1"><span class="lv a2">A2</span><b>Chào khách hàng và giới thiệu sản phẩm</b><span class="best">—</span></div>
+        <div class="topic">8 câu · Công việc / bán hàng</div>
+        <div class="pbar"><i style="width:0%"></i></div>
+        <div class="pmeta"><span>Chưa luyện</span><span>câu 0/8</span></div>
+      </div>
+    </div>
+
+    <div class="tabbar">
+      <div class="tab on"><span>📚</span>Bài học</div>
+      <div class="tab"><span>➕</span>Của tôi</div>
+      <div class="tab"><span>📈</span>Tiến độ</div>
+      <div class="tab"><span>⚙️</span>Cài đặt</div>
+    </div>
+  </div>
+  <div class="cap">Màn Danh sách bài — lọc theo cấp độ + chủ đề</div>
+</div>
+
+</body>
+</html>
