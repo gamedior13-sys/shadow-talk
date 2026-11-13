@@ -1,0 +1,62 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Generate missing Android scaffold
+        working-directory: app
+        run: flutter create --platforms android --org vn.phong --project-name shadow_talk .
+
+      - name: Sync lesson assets into app
+        run: python3 tools/sync-assets.py
+
+      - name: Pub get
+        working-directory: app
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: app
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Test
+        working-directory: app
+        run: flutter test
+
+      - name: Build APK
+        working-directory: app
+        run: flutter build apk --release --build-number=$((100 + ${{ github.run_number }}))
+
+      - name: Rename APK + write version.json
+        run: |
+          cp app/build/app/outputs/flutter-apk/app-release.apk shadow-talk.apk
+          v=$(grep '^version:' app/pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
+          echo "{\"version\":\"$v\",\"versionCode\":$((100 + ${{ github.run_number }})),\"builtAt\":\"$(date -u +%FT%TZ)\",\"apk\":\"shadow-talk.apk\"}" > version.json
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Build ${{ github.run_number }}
+          files: |
+            shadow-talk.apk
+            version.json
