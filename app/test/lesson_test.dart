@@ -84,9 +84,13 @@ void main() {
 
   test('alignWords: khớp + lệch + thiếu + thừa', () {
     final m = alignWords(['how', 'much', 'is', 'this'], ['how', 'much', 'bag']);
-    // how=ok, much=ok, is=sub(bag), this=del
+    // Cả 'is'→'bag' (sub) + 'this' (del) lẫn 'is' (del) + 'this'→'bag' (sub)
+    // đều là đường tối ưu — đếm số loại phải bằng nhau.
     final st = m.map((w) => w.status).toList();
-    expect(st, [WordStatus.ok, WordStatus.ok, WordStatus.sub, WordStatus.del]);
+    expect(st.where((x) => x == WordStatus.ok).length, 2);
+    expect(st.where((x) => x == WordStatus.sub).length, 1);
+    expect(st.where((x) => x == WordStatus.del).length, 1);
+    expect(m.length, 4);
   });
 
   test('normalizeWords bỏ dấu câu, chữ thường', () {
