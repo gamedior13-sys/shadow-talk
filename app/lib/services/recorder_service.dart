@@ -52,7 +52,6 @@ class RecorderService {
       autoGain: true,
       echoCancel: true,
       noiseSuppress: true,
-      android: AndroidRecordConfig(audioSource: AndroidAudioSource.mic),
     ));
     _sub = stream.listen(_onChunk);
   }

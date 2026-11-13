@@ -8,7 +8,6 @@ class PlayerService {
 
   /// Gọi 1 lần khi khởi động app (trước runApp).
   static Future<void> initBackground() => JustAudioBackground.init(
-        debug: false,
         androidNotificationChannelId: 'vn.phong.shadowtalk.audio',
         androidNotificationChannelName: 'Shadow Talk',
         androidNotificationOngoing: true,
