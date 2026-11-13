@@ -128,7 +128,9 @@ class AppState extends ChangeNotifier {
     _sp?.setString('sessions', jsonEncode(sessions.map((s) => s.toJson()).toList()));
     _sp?.setInt('levelIndex', levelIndex);
     _sp?.setBool('placementDone', placementDone);
-    _sp?.setString('lastPromotionDay', lastPromotionDay);
-    _sp?.setString('lastSyncDay', lastSyncDay);
+    final lp = lastPromotionDay;
+    if (lp != null) _sp?.setString('lastPromotionDay', lp);
+    final ls = lastSyncDay;
+    if (ls != null) _sp?.setString('lastSyncDay', ls);
   }
 }

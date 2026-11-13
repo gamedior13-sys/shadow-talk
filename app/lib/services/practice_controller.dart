@@ -63,6 +63,7 @@ class PracticeController extends ChangeNotifier {
   int lastRecordMs = 0;
   bool speechSeen = false;
   double modelProgress = 0;
+  List<int> lastPcm = [];
   final List<Take> takes = [];
   SessionRecord? record;
   bool promoted = false;

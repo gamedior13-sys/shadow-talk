@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/models.dart';
+import '../scoring/scoring.dart';
 import '../services/asr_service.dart';
 import '../services/player_service.dart';
 import '../services/practice_controller.dart';
